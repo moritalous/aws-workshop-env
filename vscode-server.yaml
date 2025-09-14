@@ -492,18 +492,6 @@ Resources:
                 - rm -rf /tmp/aws
                 - aws --version
           - action: aws:runShellScript
-            name: InstallDocker
-            inputs:
-              runCommand:
-                # - curl -fsSL https://get.docker.com | sh
-                - sudo apt-get update
-                - sudo apt-get install -y -q apt-transport-https ca-certificates curl gnupg lsb-release
-                - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-                - echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu {{ ubuntuVersion }} stable" >> /etc/apt/sources.list.d/docker.list
-                - sudo apt-get update && sudo apt-get install -y -q docker-ce docker-ce-cli containerd.io
-                - usermod -aG docker ubuntu
-                - docker --version
-          - action: aws:runShellScript
             name: InstallGit
             inputs:
               runCommand:
